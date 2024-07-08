@@ -1,0 +1,71 @@
+
+{% extends "base.html" %}
+{% load static %}
+{%block css%}
+<link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'css/mainstyle.css' %}">
+{%endblock%}
+
+{%block start%}
+<a href="/confessions/" class="btn btn-primary">Go back</a>
+<hr>
+<div class="card bg-light me-auto mb-3 mt-3  p-3 ">
+    <div class="headerr">
+        <p>Confession #{{data.id}}</p>
+        <p>{{data.create_at}}</p>
+    </div>
+    <div>
+        <h3>{{data.confession}}</h3>
+    </div>
+    <div>
+        <p>Posted by {{data.user}}</p>
+    </div>
+    <div class="interactbuttons">
+        <!-- <i class="ri-heart-line"></i>
+        <i class="ri-chat-4-line"></i> -->
+        <a class="btn btn-primary like"><i class="ri-thumb-up-line"></i></a>
+        <p class="likeprint">{{data.like_count}}</p>
+        <a class="btn btn-primary dislike"><i class="ri-thumb-down-line"></i></a>
+        <a class="btn btn-primary" ><i class="ri-chat-4-line">{{data.comment_count}}</i></a>
+
+    </div>
+
+</div>
+{% for comment in commentdata %}
+    <div class="card bg-light me-auto mb-3 mt-3  p-3 ">
+
+    <div>
+        <p>{{comment.author}}</p>
+    </div>
+    <div>
+        <p>{{ comment.text }}</p>
+    </div>
+
+</div>
+  {% endfor %}
+<form class="col-8  card p-3 shadow form" method="post">
+    {% csrf_token %}
+    <h1>Add a comment</h1>
+
+      <!-- <button type="button" class="btn btn-primary mt-5 w-25" name="otp">GET OTP</button> -->
+      <div class="form-group">
+        <label for="exampleInputEmail1"></label>
+        <textarea class="form-control" name="comment" id="comment" aria-describedby="emailHelp" placeholder="Type..."></textarea>
+      </div>
+
+      <p id="characterlimit">0/150</p>
+      
+      <button type="submit" class="btn btn-primary mt-5" id="postcomment">Submit</button>
+    </form>
+
+
+
+{%endblock%}
+
+{%block script%}
+<script type="module" src="{% static 'js/viewjava.js' %}"></script>
+
+{%endblock%}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+{%block css%}
+<link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'css/mainstyle.css' %}">
+{%endblock%}
+{%block start%}
+<div class="maintopui">
+<h4>successfully logged in as {{request.user}}</h4>
+<a href="/logout" class="btn btn-danger">Log out</a>
+</div>
+<hr>
+<div class="maintopui">
+<a href="/create/" class="btn btn-primary">Post a confession</a>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort by
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="/sortn/">Newest first</a>
+    <a class="dropdown-item" href="/sortl/">Most liked</a>
+    <a class="dropdown-item" href="/sortc/">Most Commented</a>
+  </div>
+</div>
+
+
+</div>
+<!-- {% for data in confessdata %}
+    <div class="card bg-light me-auto mb-3 mt-3  p-3 ">
+    <div class="headerr">
+        <a href="/viewconfession/{{data.id}}" ><p>Confession #{{data.id}}</p></a>
+        <p>{{data.create_at}}</p>
+    </div>
+    <div>
+        <h3>{{data.confession}}</h3>
+    </div>
+    <div>
+        <p>Posted by {{data.user}}</p>
+    </div>
+    <div class="interactbuttons">
+      {% csrf_token %}
+        <a class="btn btn-primary like" hx-post="/like/{{data.id}}"><i class="ri-thumb-up-line"></i></a>
+        <p class="likeprint">{{data.like_count}}</p>
+        <a class="btn btn-primary dislike" hx-post="/unlike/{{data.id}}"><i class="ri-thumb-down-line"></i></a>
+        <a class="btn btn-primary"  href="/viewconfession/{{data.id}}"><i class="ri-chat-4-line">{{data.comment_count}}</i></a>
+    </div>
+</div>
+  {% endfor %} -->
+  {% for data in page_obj.object_list %}
+    <div class="card bg-light me-auto mb-3 mt-3  p-3 ">
+    <div class="headerr">
+        <a href="/viewconfession/{{data.id}}" ><p>Confession #{{data.id}}</p></a>
+        <p>{{data.create_at}}</p>
+    </div>
+    <div>
+        <h3>{{data.confession}}</h3>
+    </div>
+    <div>
+        <p>Posted by {{data.user}}</p>
+    </div>
+    <div class="interactbuttons">
+      {% csrf_token %}
+        <a class="btn btn-primary like" hx-post="/like/{{data.id}}"><i class="ri-thumb-up-line"></i></a>
+        <p class="likeprint">{{data.like_count}}</p>
+        <a class="btn btn-primary dislike" hx-post="/unlike/{{data.id}}"><i class="ri-thumb-down-line"></i></a>
+        <a class="btn btn-primary"  href="/viewconfession/{{data.id}}"><i class="ri-chat-4-line">{{data.comment_count}}</i></a>
+    </div>
+</div>
+  {% endfor %}
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <!-- {%if page_obj.has_previous %} -->
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+      <!-- {% endif %} -->
+      <li class="page-item"><a class="page-link" href="#">{{page_obj.number}}</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.number|add:'1'}}">{{page_obj.number|add:"1"}}</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.number|add:'2'}}">{{page_obj.number|add:"2"}}</a></li>
+      <!-- {%if page_obj.has_next %} -->
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
+      <!-- {% endif %} -->
+    </ul>
+  </nav>
+<!-- <div>
+    {%if page_obj.has_previous %} {# whether the previous page exists #}
+        <a href="?page={{page_obj.previous_page_number}}">prev</a> {# link to the prev page #}
+    {% endif %}
+    <span>{{page_obj.number}}</span> {# the current page number #}
+   
+    {%if page_obj.has_next %} {# whether the next page exists #}
+        <a href="?page={{page_obj.next_page_number}}">next</a> {# link to the next page #}
+    {% endif %}
+</div> -->
+{% endblock %}
+
+{%block script%}
+<script type="module" src="{% static 'js/mainn.js' %}"></script>
+
+{%endblock%}

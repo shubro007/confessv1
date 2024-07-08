@@ -1,0 +1,23 @@
+.cards{
+    border: black solid 2px;
+    border-radius: 20px;
+    padding: 10%;
+}
+html {
+    scroll-behavior: smooth;
+  }
+.headerr{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.interactbuttons{
+    display: flex;
+    gap: 20px;
+}
+
+.maintopui{
+    display: flex;
+    justify-content: space-between;
+}
