@@ -1,0 +1,72 @@
+*{
+    font-family: sans-serif;
+      padding: 0;
+      margin: 0;
+      border: 2px none solid;
+    }
+    body,html {
+      
+    }
+    .tagline{
+      font-family: "Playwrite MX", cursive;
+    }
+    .container{
+      
+      height: 25vw;
+      width: 100%;
+    }
+    .wow{
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 10vw;
+      
+    }
+    .rightdiv{
+      /* width: 100vwmax; */
+      flex-grow: 2;
+    }
+    .leftdiv{
+    
+    }
+    .title{
+      font-size: 6vmax;
+      font-weight: 700;
+    }
+    .leftcontent{
+      font-size: 1.5vmax;
+      position: sticky;
+      top: 1;
+
+    }
+    .date,.time{
+      font-family: "Kanit", sans-serif;
+    }
+
+    @media (max-width:600px){
+      .rightdiv{
+        flex-grow: 0;
+      }
+
+      .form{
+        width: auto;
+        margin: 10px;
+      }  
+      .title{
+        text-align: center;
+      }  
+      .gifs{
+        display: flex;
+        justify-content: space-between;
+      }  
+      .leftcontent{
+        text-align: center;
+      }  
+      .gifgrp1, .gifgrp2{
+        display: flex;
+        
+      }
+      .gifgrp1{
+        width: 10%vw;
+      }
+    }

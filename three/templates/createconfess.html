@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{%block start%}
+<a href="/confessions/" class="btn btn-primary">Go back</a>
+<hr>
+<form class="col-8  card p-3 shadow form" method="post">
+    {% csrf_token %}
+    <h1>Post a confession</h1>
+
+      <!-- <button type="button" class="btn btn-primary mt-5 w-25" name="otp">GET OTP</button> -->
+      <div class="form-group">
+        <label for="exampleInputEmail1"></label>
+        <textarea class="form-control" name="confession" id="confession" aria-describedby="emailHelp" placeholder="Type..."></textarea>
+      </div>
+
+      <p id="characterlimit">0/300</p>
+      
+      <button type="submit" class="btn btn-primary mt-5" id="postconfess">Submit</button>
+    </form>
+
+{% endblock %}
+
+{%block script%}
+<script type="module" src="{% static 'js/createjava.js' %}"></script>
+
+{%endblock%}
